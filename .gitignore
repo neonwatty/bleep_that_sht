@@ -25,16 +25,7 @@ tests/speed/test_results/*
 *.onnx
 *.db
 *.wav
-test_files/search/*
-test_files/transcribe/audio_files/*
-test_files/transcribe/video_files/*
-*.DS_Store
-*.faiss
-*.onnx
-output_data/
-node_modules/
-onnx_model
-*test_data/*
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
