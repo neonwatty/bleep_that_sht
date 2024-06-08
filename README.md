@@ -1,8 +1,10 @@
 # bleep that sh*t
 
-This repo illustrates how to use a transcription model to automatically bleep out desired words from an input video.
+Make someone sound naughty - bleep out words of your choice leveraging a transcription AI model.
 
-It contains a streamlit demo (see below) and detailed walkthrough notebook.
+This repo illustrates how to use a transcription model to automatically bleep out desired words from an input video.  All processing is performed locally.
+
+It contains a streamlit demo (see below) and detailed walkthrough notebook (see `beep_that_sht_walkthrough.ipynb`).
 
 ## Install instructions
 
