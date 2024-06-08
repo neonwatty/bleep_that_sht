@@ -89,7 +89,7 @@ def button_logic(
             st.video(bleep_video_output)
 
 
-default_file = main_dir + "/bleep_test_1.mp4"
+default_file = main_dir + "/test_data/bleep_test_1.mp4"
 if uploaded_file is not None:
     byte_file = io.BytesIO(uploaded_file.read())
 else:
