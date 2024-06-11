@@ -1,3 +1,5 @@
+<a href="https://colab.research.google.com/github/jermwatt/bleep_that_sht/blob/main/beep_that_sht_walkthrough.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 # bleep that sh*t
 
 Make someone sound naughty - bleep out words of your choice leveraging a transcription AI model.
