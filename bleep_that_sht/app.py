@@ -7,6 +7,7 @@ from bleep_that_sht.create import bleep_replace
 import tempfile
 import io
 
+st.title("Bleep That Sh*t")
 
 with st.container(border=True):
     uploaded_file = st.file_uploader("Choose a video...", type=["mp4"])
@@ -89,7 +90,7 @@ def button_logic(
             st.video(bleep_video_output)
 
 
-default_file = main_dir + "/test_data/bleep_test_1.mp4"
+default_file = main_dir + "/data/input/bleep_test_1.mp4"
 if uploaded_file is not None:
     byte_file = io.BytesIO(uploaded_file.read())
 else:
