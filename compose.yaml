@@ -1,0 +1,6 @@
+name: bleep_that_sht
+services:
+    youtube_downloader:
+        ports:
+            - 8502:8501
+        image: bleep_that_sht
