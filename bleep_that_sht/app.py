@@ -7,7 +7,9 @@ from bleep_that_sht.create import bleep_replace
 import tempfile
 import io
 
+st.set_page_config(page_title="Bleep That Sh*t")
 st.title("Bleep That Sh*t")
+
 
 with st.container(border=True):
     uploaded_file = st.file_uploader("Choose a video...", type=["mp4"])
