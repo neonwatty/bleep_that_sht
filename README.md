@@ -16,6 +16,8 @@ To get setup to run the notebook / bleep your own videos / run the strealit demo
 pip install -r requirements.txt
 ```
 
+You will need [ffmpeg](https://www.ffmpeg.org/download.html) installed on your machine as well.
+
 
 ## Instructions for bleeping your own videos
 
