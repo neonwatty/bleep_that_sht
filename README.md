@@ -2,11 +2,20 @@
 
 # bleep that sh*t
 
-Make someone sound naughty - bleep out words of your choice leveraging a transcription AI model.
+Make someone sound naughty.
 
-This repo illustrates how to use a transcription model to automatically bleep out desired words from an input video.  All processing is performed locally.
+Bleep out keywords of your choice from an mp4 by leveraging a transcription model (here Whisper) to transcribe the audio, then target and replace chosen words with *bleep* sounds using the extracted timestamps associated with your chosen word(s.  
 
-It contains a streamlit demo (see below) and detailed walkthrough notebook (see `beep_that_sht_walkthrough.ipynb`).
+All processing is performed locally - see the streamlit app (setup below) and detailed walkthrough notebook (see `beep_that_sht_walkthrough.ipynb`) to play / see nitty gritty details.
+
+An example - below is a short clip.  We can bleep out any word(s) we want - like "treats", "ice cream", "chocolate".
+
+https://github.com/neonwatty/bleep_that_sht/assets/16326421/690032c5-6a42-442a-b208-fac6c6bd8458
+
+Now the auto-bleeped version:
+
+https://github.com/neonwatty/bleep_that_sht/assets/16326421/725a4b86-0a04-49ea-a2cf-df9d7657d79d
+
 
 ## Install instructions
 
