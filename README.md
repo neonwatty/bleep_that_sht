@@ -8,13 +8,16 @@ Bleep out keywords of your choice from an mp4 by leveraging a transcription mode
 
 All processing is performed locally - see the streamlit app (setup below) and detailed walkthrough notebook (see `beep_that_sht_walkthrough.ipynb`) to play / see nitty gritty details.
 
-An example - below is a short clip.  (make sure to turn on audio - its off by default)
+An example - below is a short clip we'll bleep out some words from using the pipeline in this repo.  (make sure to turn on audio - its off by default)
 
-https://github.com/neonwatty/bleep_that_sht/assets/16326421/690032c5-6a42-442a-b208-fac6c6bd8458
 
-Now the same clip with the word "treats" bleeped out.
+https://github.com/neonwatty/bleep_that_sht/assets/16326421/fb8568fe-aba0-49e2-a563-642d658c0651
 
-https://github.com/neonwatty/bleep_that_sht/assets/16326421/725a4b86-0a04-49ea-a2cf-df9d7657d79d
+
+Now the same clip with the words - "treetz", "ice", "cream", "chocolate", "syrup", and "cookie" - bleeped out
+
+
+https://github.com/neonwatty/bleep_that_sht/assets/16326421/63ebd7a0-46f6-4efd-80ea-20512ff427c0
 
 
 ## Install instructions
