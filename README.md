@@ -4,7 +4,7 @@
 
 Make someone sound naughty.
 
-Bleep out keywords of your choice from an mp4 by leveraging a transcription model (here Whisper) to transcribe the audio, then target and replace chosen words with *bleep* sounds using the extracted timestamps associated with your chosen word(s.  
+Bleep out keywords of your choice from an mp4 by leveraging a transcription model (here Whisper) to transcribe the audio, then target and replace chosen words with *bleep* sounds using the extracted timestamps associated with your chosen word(s).  
 
 All processing is performed locally - see the streamlit app (setup below) and detailed walkthrough notebook (see `beep_that_sht_walkthrough.ipynb`) to play / see nitty gritty details.
 
