@@ -10,6 +10,24 @@ import io
 st.set_page_config(page_title="Bleep That Sh*t")
 st.title("Bleep That Sh*t")
 
+st.markdown(
+        """        
+        How it works:
+        
+        - Upload a video (mp4) (a test video is loaded by default) 
+        - Provide desired words to bleep from that video
+        - Choose a model from the Whisper family to transcribe the audio (defaults to base)
+        - Press "Just Transcribe" to examine / download just the transcription of the video (can help in choosing bleep words)
+        - Press "Transcribe and bleep" to transcribe and replace all instances of your words with *beep* sounds
+                        
+        If you want to run longer videos/ larger models pull and run the app locally.  
+        
+        You do *not* absolutely need a GPU to run this locally.
+        
+        ---
+        """
+)
+
 
 with st.container(border=True):
     uploaded_file = st.file_uploader("Choose a video...", type=["mp4"])
