@@ -4,7 +4,7 @@
 
 # bleep that sh*t
 
-Make anyone sound naughty with Python.
+Make anyone sound naughty / funny with Python.
 
 Bleep out keywords of your choice from an mp4 by leveraging a transcription model (here Whisper) to transcribe the audio, then target and replace chosen words with *bleep* sounds using the extracted timestamps associated with your chosen word(s).  
 
