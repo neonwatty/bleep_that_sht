@@ -1,3 +1,4 @@
+[![HuggingFace Space](https://img.shields.io/badge/🤗-HuggingFace%20Space-cyan.svg)](https://huggingface.co/spaces/neonwatty/bleep_that_sht)
 <a href="https://colab.research.google.com/github/jermwatt/bleep_that_sht/blob/main/beep_that_sht_walkthrough.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>  <a href="https://www.youtube.com/watch?v=U8Ki9dD3HF0" target="_parent"><img src="https://badges.aleen42.com/src/youtube.svg" alt="Youtube"/></a>
 
 
@@ -32,16 +33,18 @@ pip install -r requirements.txt
 You will need [ffmpeg](https://www.ffmpeg.org/download.html) installed on your machine as well.
 
 
-## Instructions for bleeping your own videos
+## Instructions for bleeping your own **local** videos
 
-Start the streamlit demo
+Start this streamlit demo locally that lets you drag and drop local video files to bleep
 
 ```python
-python -m streamlit run bleep_that_sht/app.py
+python -m streamlit run bleep_that_sht/app_video_upload.py
 ```
 
-You will see printouts at the terminal indicating success of the two smallest whisper model downloads - `tiny` and `base`.
+## Instructions for bleeping **youtube** videos via youtube / shorts url
 
-Then you can drag and drop your own mp4 (note: only mp4 is accepted) videos into the demo app, define your own bleep_words, and process.
+Start this streamlit demo locally that lets you enter in a youtube / shorts url to a video you wish to bleep
 
-You can download your bleeped video by clicking on the three dots at the bottom right of the bleeped video, and clicking download.
+```python
+python -m streamlit run bleep_that_sht/app_url_download.py
+```
