@@ -21,6 +21,10 @@ Now the same clip with the words - "treetz", "ice", "cream", "chocolate", "syrup
 
 https://github.com/neonwatty/bleep_that_sht/assets/16326421/63ebd7a0-46f6-4efd-80ea-20512ff427c0
 
+## HF Spaces
+
+Click [![HuggingFace Space](https://img.shields.io/badge/🤗-HuggingFace%20Space-cyan.svg)](https://huggingface.co/spaces/neonwatty/bleep_that_sht) to try out this toy app directly in your browser.  The machine the Space is running on is pretty small - so use it to try out shorter (<2min) videos.
+
 
 ## Install instructions
 
@@ -48,3 +52,5 @@ Start this streamlit demo locally that lets you enter in a youtube / shorts url 
 ```python
 python -m streamlit run bleep_that_sht/app_url_download.py
 ```
+
+This is the version hosted in the HF space [![HuggingFace Space](https://img.shields.io/badge/🤗-HuggingFace%20Space-cyan.svg)](https://huggingface.co/spaces/neonwatty/bleep_that_sht).
