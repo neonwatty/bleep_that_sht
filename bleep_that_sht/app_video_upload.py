@@ -15,16 +15,18 @@ tab1, tab2 = st.tabs(["🎬 Bleep That Sh*t 🙊", "💡 About"])
 with tab2:
     st.markdown(
             """
-            # 🎬 Bleep out words of your choice from an input video. 
+            ### Bleep out words of your choice from an input video. 
             
             How it works:
             
-            1.  Provided a youtube / shorts url
+            1.  Drag and drop your mp4 video file into the app
             
             2.  Choose your your desired bleep keywords
             
-            3.  (if running locally) Choose a model from the Whisper family to transcribe the audio (defaults to base for HF space)
+            3.  Choose a model from the Whisper family to transcribe the audio (defaults to base for HF space)
+
             4.  (optional) Press "Just Transcribe" to examine / download just the transcription of the video (can help in choosing bleep words)
+
             5.  Press "Transcribe and bleep" to transcribe and replace all instances of your keywords with *beep* sounds
                     
             If you want to select your Whisper model / run longer videos pull and run the app locally.  
