@@ -48,7 +48,6 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
             with gr.Row():
                 transcript_output = gr.Textbox(label="Video Transcript", placeholder="", max_lines=5, show_copy_button=True)
 
-            with gr.Row():
                 og_video = gr.Video(
                     show_download_button=True,
                     show_label=True,
@@ -58,7 +57,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                     width="50vw",
                     height="50vw",
                 )
-
+                            
                 bleep_video = gr.Video(
                     show_download_button=True,
                     show_label=True,
@@ -69,8 +68,9 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                     height="50vw",
                 )
 
-            @just_transcribe_button.click(inputs=[url_input], outputs=[og_video, transcript_output])
-            def just_transcribe():
+
+            @just_transcribe_button.click(inputs=[url_input, transcript_output], outputs=[og_video, transcript_output])
+            def just_transcribe(url_input, transcript_output):
                 with tempfile.TemporaryDirectory() as tmpdirname:
                     temporary_video_location = tmpdirname + "/original_" + str(uuid.uuid4()) + ".mp4"
                     download_video(url_input, temporary_video_location)
@@ -78,7 +78,9 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                     byte_file = io.BytesIO(filename.read())
                     with open(temporary_video_location, "wb") as out:
                         out.write(byte_file.read())
-                        og_video.value = out
+                        og_video.value = temporary_video_location
+                     
+                    transcript_output = ""
 
     with gr.Tab("💡 About"):
         with gr.Blocks() as about:

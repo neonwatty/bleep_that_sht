@@ -1,4 +1,6 @@
-from pytube import YouTube
+# from pytube import YouTube
+
+import yt_dlp
 import re
 
 
@@ -15,21 +17,14 @@ def download_video(url: str, savepath: str, my_proxies: dict = {}) -> None:
     try:
         print("Downloading video from youtube...")
         if is_valid_youtube_url(url):
-            yt = YouTube(url, proxies=my_proxies)
-            audio_video_streams = (
-                yt.streams.filter(
-                    file_extension="mp4",
-                    only_audio=False,
-                    only_video=False,
-                    progressive=True,
-                    type="video",
-                )
-                .order_by("resolution")
-                .asc()
-            )
-            audio_video_itags = [v.itag for v in audio_video_streams]
-            first_choice_itag = audio_video_itags[0]
-            yt.streams.get_by_itag(first_choice_itag).download(filename=savepath)
+            ydl_opts = {
+                'format': 'bestvideo[height<=720]+bestaudio/best', 
+                'merge_output_format': 'mp4',
+                'outtmpl': savepath,
+            }
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([url])
+
             print("...done!")
         else:
             raise ValueError(f"invalid input url: {url}")
