@@ -45,42 +45,54 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                     just_transcribe_button = gr.Button("Just Transcribe", variant="primary")
                     bleep_transcribe_button = gr.Button("Transcribe & Bleep", variant="primary")
 
-            with gr.Row():
-                transcript_output = gr.Textbox(label="Video Transcript", placeholder="", max_lines=5, show_copy_button=True)
+            with tempfile.TemporaryDirectory() as tmpdirname:
+                with gr.Row():
+                    transcript_output = gr.Textbox(label="Video Transcript", placeholder="", max_lines=5, show_copy_button=True)
 
-                og_video = gr.Video(
-                    show_download_button=True,
-                    show_label=True,
-                    label="original video",
-                    format="mp4",
-                    visible=True,
-                    width="50vw",
-                    height="50vw",
-                )
-                            
-                bleep_video = gr.Video(
-                    show_download_button=True,
-                    show_label=True,
-                    label="bleeped video",
-                    format="mp4",
-                    visible=True,
-                    width="50vw",
-                    height="50vw",
-                )
+                with gr.Row():
+                    og_video = gr.Video(
+                        show_download_button=True,
+                        show_label=True,
+                        label="original video",
+                        format="mp4",
+                        visible=True,
+                        width="50vw",
+                        height="50vw",
+                    )
+                                
+                    bleep_video = gr.Video(
+                        show_download_button=True,
+                        show_label=True,
+                        label="bleeped video",
+                        format="mp4",
+                        visible=True,
+                        width="50vw",
+                        height="50vw",
+                    )
 
-
-            @just_transcribe_button.click(inputs=[url_input, transcript_output], outputs=[og_video, transcript_output])
-            def just_transcribe(url_input, transcript_output):
-                with tempfile.TemporaryDirectory() as tmpdirname:
+                @just_transcribe_button.click(inputs=[url_input], outputs=[og_video, transcript_output])
+                def just_transcribe(url_input):
                     temporary_video_location = tmpdirname + "/original_" + str(uuid.uuid4()) + ".mp4"
                     download_video(url_input, temporary_video_location)
                     filename = open(temporary_video_location, "rb")
                     byte_file = io.BytesIO(filename.read())
                     with open(temporary_video_location, "wb") as out:
                         out.write(byte_file.read())
-                        og_video.value = temporary_video_location
-                     
+                            
+                    new_video = gr.Video(
+                        value=temporary_video_location,
+                        show_download_button=True,
+                        show_label=True,
+                        label="original video",
+                        format="mp4",
+                        visible=True,
+                        width="50vw",
+                        height="50vw",
+                    )
+                            
                     transcript_output = ""
+                    return new_video, transcript_output
+
 
     with gr.Tab("💡 About"):
         with gr.Blocks() as about:
