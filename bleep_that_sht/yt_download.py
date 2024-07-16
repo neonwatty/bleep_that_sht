@@ -11,11 +11,7 @@ def is_valid_youtube_url(url: str) -> bool:
     return re.match(pattern, url) is not None
 
 
-def download_video(
-    url: str,
-    savepath: str,
-    my_proxies: dict = {}
-) -> None:
+def download_video(url: str, savepath: str, my_proxies: dict = {}) -> None:
     try:
         print("Downloading video from youtube...")
         if is_valid_youtube_url(url):
@@ -32,7 +28,7 @@ def download_video(
                 .asc()
             )
             audio_video_itags = [v.itag for v in audio_video_streams]
-            first_choice_itag = audio_video_itags[0]     
+            first_choice_itag = audio_video_itags[0]
             yt.streams.get_by_itag(first_choice_itag).download(filename=savepath)
             print("...done!")
         else:

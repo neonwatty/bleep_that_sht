@@ -10,6 +10,4 @@ def extract_audio(local_file_path: str, audio_filepath: str) -> None:
             audio.close()
             video.close()
     except Exception as e:
-        raise ValueError(
-            f"error extracting audio from video {local_file_path}, exception: {e}"
-        )
+        raise ValueError(f"error extracting audio from video {local_file_path}, exception: {e}")

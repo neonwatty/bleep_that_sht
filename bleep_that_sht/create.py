@@ -15,19 +15,12 @@ def word_cleaner(word: str) -> str:
 # collect all timestamped instances of bleep_word in transcript
 def query_transcript(bleep_words: list, timestamped_transcript: list) -> list:
     transcript_words = sum(
-        [
-            timestamped_transcript[i]["words"]
-            for i in range(len(timestamped_transcript))
-        ],
+        [timestamped_transcript[i]["words"] for i in range(len(timestamped_transcript))],
         [],
     )
     detected_bleep_words = []
     for bleep_word in bleep_words:
-        detected_bleep_words += [
-            v
-            for v in transcript_words
-            if word_cleaner(v["text"]) == word_cleaner(bleep_word)
-        ]
+        detected_bleep_words += [v for v in transcript_words if word_cleaner(v["text"]) == word_cleaner(bleep_word)]
     detected_bleep_words = sorted(detected_bleep_words, key=lambda d: d["start"])
     return detected_bleep_words
 

@@ -7,7 +7,6 @@ from bleep_that_sht.yt_download import download_video
 import tempfile
 import uuid
 import io
-import time
 
 st.set_page_config(page_title="🎬 Bleep That Sh*t 🙊")
 st.title("🎬 Bleep That Sh*t 🙊")
@@ -16,26 +15,16 @@ tab1, tab2 = st.tabs(["🎬 Bleep That Sh*t 🙊", "💡 About"])
 
 with tab2:
     st.markdown(
-        """
-            ### Bleep out words of your choice from an input video. 
-            
-            How it works:
-            
-            1.  Provided a youtube / shorts url
-            
-            2.  Choose your your desired bleep keywords
-            
-            3.  (if running locally) Choose a model from the Whisper family to transcribe the audio (defaults to base only for HF space)
-            4.  (optional) Press "Just Transcribe" to examine / download just the transcription of the video (can help in choosing bleep words)
-            5.  Press "Transcribe and bleep" to transcribe and replace all instances of your keywords with *beep* sounds
-                    
-            If you want to select your Whisper model / run longer videos pull and run the app locally. 
-            
-            Notice: baseline (not fine tuned) Whisper models are used here - you may need to be creative to bleep out all the versions of an input word you want depending on its transcription.
-            
-            You do *not* need a GPU to run this locally.  Larger models take more time to process locally, but its doable.
-        
-            """
+        "### Bleep out words of your choice from an input video.  \n"
+        "How it works: \n\n"
+        "1.  Provided a youtube / shorts url \n"
+        "2.  Choose your your desired bleep keywords \n"
+        "3.  (if running locally) Choose a model from the Whisper family to transcribe the audio (defaults to base only for HF space) \n"
+        "4.  (optional) Press 'Just Transcribe' to examine / download just the transcription of the video (can help in choosing bleep words) \n"
+        "5.  Press 'Transcribe and bleep' to transcribe and replace all instances of your keywords with *beep* sounds \n\n"
+        "If you want to select your Whisper model / run longer videos pull and run the app locally. \n\n"
+        "Notice: baseline (not fine tuned) Whisper models are used here - you may need to be creative to bleep out all the versions of an input word you want depending on its transcription. \n\n"
+        "You do *not* need a GPU to run this locally.  Larger models take more time to process locally, but its doable. \n"
     )
 
 with tab1:
@@ -97,9 +86,7 @@ with tab1:
                 out.close()
 
             extract_audio(temporary_video_location, temporary_audio_location)
-            transcript, timestamped_transcript = transcribe(
-                local_file_path=temporary_audio_location, model=model_selection
-            )
+            transcript, timestamped_transcript = transcribe(local_file_path=temporary_audio_location, model=model_selection)
 
             with col0.container(border=True):
                 st.text_area(
@@ -121,9 +108,7 @@ with tab1:
                 out.close()
 
             extract_audio(temporary_video_location, temporary_audio_location)
-            transcript, timestamped_transcript = transcribe(
-                local_file_path=temporary_audio_location, model=model_selection
-            )
+            transcript, timestamped_transcript = transcribe(local_file_path=temporary_audio_location, model=model_selection)
 
             with col0.container(border=True):
                 st.text_area(
@@ -146,11 +131,7 @@ with tab1:
                 st.video(bleep_video_output)
 
     with tempfile.TemporaryDirectory() as tmpdirname:
-        temporary_video_location = (
-            tmpdirname + "/original_" + str(uuid.uuid4()) + ".mp4"
-        )
+        temporary_video_location = tmpdirname + "/original_" + str(uuid.uuid4()) + ".mp4"
         bleep_word_list = bleep_words.split(",")
         bleep_words_list = [v.strip() for v in bleep_word_list if len(v.strip()) > 0]
-        button_logic(
-            temporary_video_location, model_selection, bleep_words_list, upload_url
-        )
+        button_logic(temporary_video_location, model_selection, bleep_words_list, upload_url)
