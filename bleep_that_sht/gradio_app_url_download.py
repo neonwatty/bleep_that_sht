@@ -40,10 +40,10 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                         value="treetz, ice, cream, chocolate, syrup, cookie, hooked, threats, treats, trees",
                     )
                 with gr.Column(scale=3):
-                    gr.Dropdown(choices=avaliable_models, value="base", label="whisper model (base only in HF space)", info="whisper model selection")
+                    model_selection = gr.Dropdown(choices=avaliable_models, value="base", label="whisper model (base only in HF space)", info="whisper model selection", interactive=False)
                 with gr.Column(scale=4):
                     just_transcribe_button = gr.Button("Just Transcribe", variant="primary")
-                    bleep_transcribe_button = gr.Button("Transcribe & Bleep", variant="primary")
+                    transcribe_and_bleep_button = gr.Button("Transcribe & Bleep", variant="primary")
 
             with tempfile.TemporaryDirectory() as tmpdirname:
                 with gr.Row():
@@ -70,16 +70,18 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                         height="50vw",
                     )
 
-                @just_transcribe_button.click(inputs=[url_input], outputs=[og_video, transcript_output])
-                def just_transcribe(url_input):
+                @just_transcribe_button.click(inputs=[url_input, model_selection], outputs=[og_video, bleep_video, transcript_output])
+                def just_transcribe(url_input, model_selection):
                     temporary_video_location = tmpdirname + "/original_" + str(uuid.uuid4()) + ".mp4"
+                    temporary_audio_location = temporary_video_location.replace("mp4", "mp3")
+
                     download_video(url_input, temporary_video_location)
                     filename = open(temporary_video_location, "rb")
                     byte_file = io.BytesIO(filename.read())
                     with open(temporary_video_location, "wb") as out:
                         out.write(byte_file.read())
                             
-                    new_video = gr.Video(
+                    new_og_video = gr.Video(
                         value=temporary_video_location,
                         visible=True,
                         show_download_button=True,
@@ -89,10 +91,80 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                         width="50vw",
                         height="50vw",
                     )
-                            
-                    transcript_output = ""
-                    return new_video, transcript_output
                     
+                    new_bleep_video = gr.Video(
+                        visible=False,
+                        show_download_button=True,
+                        show_label=True,
+                        label="bleeped video",
+                        format="mp4",
+                        width="50vw",
+                        height="50vw",
+                    )
+                    
+                    
+                    extract_audio(temporary_video_location, temporary_audio_location)
+                    transcript, timestamped_transcript = transcribe(local_file_path=temporary_audio_location, model=model_selection)
+
+                    return new_og_video, new_bleep_video, transcript
+                    
+                    
+                @transcribe_and_bleep_button.click(inputs=[url_input, model_selection, bleep_words], outputs=[og_video, bleep_video, transcript_output])
+                def transcribe_and_bleep(url_input, model_selection, bleep_words):
+                    if len(bleep_words) > 0:    
+                        temporary_video_location = tmpdirname + "/original_" + str(uuid.uuid4()) + ".mp4"
+                        temporary_audio_location = temporary_video_location.replace("mp4", "mp3")
+
+                        download_video(url_input, temporary_video_location)
+                        filename = open(temporary_video_location, "rb")
+                        byte_file = io.BytesIO(filename.read())
+                        with open(temporary_video_location, "wb") as out:
+                            out.write(byte_file.read())
+                                
+                        new_og_video = gr.Video(
+                            value=temporary_video_location,
+                            visible=True,
+                            show_download_button=True,
+                            show_label=True,
+                            label="original video",
+                            format="mp4",
+                            width="50vw",
+                            height="50vw",
+                        )
+                        
+                        extract_audio(temporary_video_location, temporary_audio_location)
+                        transcript, timestamped_transcript = transcribe(local_file_path=temporary_audio_location, model=model_selection)
+
+                        bleep_word_list = bleep_words.split(",")
+                        bleep_word_list = [v.strip() for v in bleep_word_list if len(v.strip()) > 0]
+                        bleep_video_output = temporary_video_location.replace("original", "bleep")
+                        bleep_audio_output = bleep_video_output.replace("mp4", "mp3")
+
+                        bleep_replace(
+                            temporary_video_location,
+                            temporary_audio_location,
+                            bleep_video_output,
+                            bleep_audio_output,
+                            bleep_word_list,
+                            timestamped_transcript,
+                        )
+
+                        new_bleep_video = gr.Video(
+                            value=bleep_video_output,
+                            visible=True,
+                            show_download_button=True,
+                            show_label=True,
+                            label="bleeped video",
+                            format="mp4",
+                            width="50vw",
+                            height="50vw",
+                        )
+            
+                        return new_og_video, new_bleep_video, transcript
+                    else:
+                        gr.Warning("bleep words empty!", duration=3)
+                        return None, None, None
+
         with gr.TabItem("💡 About"):
             with gr.Blocks() as about:
                 gr.Markdown(
