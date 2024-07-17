@@ -33,7 +33,6 @@ def bleep_replace(
     bleep_words: list,
     timestamped_transcript: dict,
 ) -> None:
-
     # # extract and save audio from original video
     # extract_audio(local_file_path=og_video_path, audio_filepath=og_audio_path)
 

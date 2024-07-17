@@ -15,7 +15,7 @@ HF_TOKEN = None
 
 try:
     HF_TOKEN = os.environ.get("HF_TOKEN")
-except:
+except:  # noqa E722
     pass
 
 
@@ -40,7 +40,13 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                         value="treetz, ice, cream, chocolate, syrup, cookie, hooked, threats, treats, trees",
                     )
                 with gr.Column(scale=3):
-                    model_selection = gr.Dropdown(choices=avaliable_models, value="base", label="whisper model (base only in HF space)", info="whisper model selection", interactive=False)
+                    model_selection = gr.Dropdown(
+                        choices=avaliable_models,
+                        value="base",
+                        label="whisper model (base only in HF space)",
+                        info="whisper model selection",
+                        interactive=False,
+                    )
                 with gr.Column(scale=4):
                     just_transcribe_button = gr.Button("Just Transcribe", variant="primary")
                     transcribe_and_bleep_button = gr.Button("Transcribe & Bleep", variant="primary")
@@ -59,7 +65,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                         width="50vw",
                         height="50vw",
                     )
-                                
+
                     bleep_video = gr.Video(
                         visible=False,
                         show_download_button=True,
@@ -80,7 +86,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                     byte_file = io.BytesIO(filename.read())
                     with open(temporary_video_location, "wb") as out:
                         out.write(byte_file.read())
-                            
+
                     new_og_video = gr.Video(
                         value=temporary_video_location,
                         visible=True,
@@ -91,7 +97,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                         width="50vw",
                         height="50vw",
                     )
-                    
+
                     new_bleep_video = gr.Video(
                         visible=False,
                         show_download_button=True,
@@ -101,17 +107,17 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                         width="50vw",
                         height="50vw",
                     )
-                    
-                    
+
                     extract_audio(temporary_video_location, temporary_audio_location)
                     transcript, timestamped_transcript = transcribe(local_file_path=temporary_audio_location, model=model_selection)
 
                     return new_og_video, new_bleep_video, transcript
-                    
-                    
-                @transcribe_and_bleep_button.click(inputs=[url_input, model_selection, bleep_words], outputs=[og_video, bleep_video, transcript_output])
+
+                @transcribe_and_bleep_button.click(
+                    inputs=[url_input, model_selection, bleep_words], outputs=[og_video, bleep_video, transcript_output]
+                )
                 def transcribe_and_bleep(url_input, model_selection, bleep_words):
-                    if len(bleep_words) > 0:    
+                    if len(bleep_words) > 0:
                         temporary_video_location = tmpdirname + "/original_" + str(uuid.uuid4()) + ".mp4"
                         temporary_audio_location = temporary_video_location.replace("mp4", "mp3")
 
@@ -120,7 +126,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                         byte_file = io.BytesIO(filename.read())
                         with open(temporary_video_location, "wb") as out:
                             out.write(byte_file.read())
-                                
+
                         new_og_video = gr.Video(
                             value=temporary_video_location,
                             visible=True,
@@ -131,7 +137,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                             width="50vw",
                             height="50vw",
                         )
-                        
+
                         extract_audio(temporary_video_location, temporary_audio_location)
                         transcript, timestamped_transcript = transcribe(local_file_path=temporary_audio_location, model=model_selection)
 
@@ -159,7 +165,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                             width="50vw",
                             height="50vw",
                         )
-            
+
                         return new_og_video, new_bleep_video, transcript
                     else:
                         gr.Warning("bleep words empty!", duration=3)

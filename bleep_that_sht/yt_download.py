@@ -18,9 +18,9 @@ def download_video(url: str, savepath: str, my_proxies: dict = {}) -> None:
         print("Downloading video from youtube...")
         if is_valid_youtube_url(url):
             ydl_opts = {
-                'format': 'bestvideo[height<=720]+bestaudio/best', 
-                'merge_output_format': 'mp4',
-                'outtmpl': savepath,
+                "format": "bestvideo[height<=720]+bestaudio/best",
+                "merge_output_format": "mp4",
+                "outtmpl": savepath,
             }
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([url])
