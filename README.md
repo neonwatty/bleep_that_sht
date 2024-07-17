@@ -1,5 +1,6 @@
 <a href="https://huggingface.co/spaces/neonwatty/bleep_that_sht" target="_parent"><img src="https://img.shields.io/badge/🤗-HuggingFace%20Space-cyan.svg" alt="HuggingFace Space"/></a>
-<a href="https://colab.research.google.com/github/jermwatt/bleep_that_sht/blob/main/beep_that_sht_walkthrough.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>  <a href="https://www.youtube.com/watch?v=U8Ki9dD3HF0" target="_parent"><img src="https://badges.aleen42.com/src/youtube.svg" alt="Youtube"/></a> [![Python application](https://github.com/neonwatty/bleep_that_sht/actions/workflows/python-app.yml/badge.svg)](https://github.com/neonwatty/bleep_that_sht/actions/workflows/python-app.yml/python-app.yml)
+<a href="https://colab.research.google.com/github/jermwatt/bleep_that_sht/blob/main/beep_that_sht_walkthrough.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>  <a href="https://www.youtube.com/watch?v=U8Ki9dD3HF0" target="_parent"><img src="https://badges.aleen42.com/src/youtube.svg" alt="Youtube"/></a>
+[![Python application](https://github.com/neonwatty/bleep_that_sht/actions/workflows/python-app.yml/badge.svg)](https://github.com/neonwatty/bleep_that_sht/actions/workflows/python-app.yml/python-app.yml) <a href="https://www.producthunt.com/posts/bleep-that-sh-t?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-bleep&#0045;that&#0045;sh&#0045;t" target="_parent"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=470378&theme=light" alt="Bleep&#0032;That&#0032;Sh&#0042;t&#0033; - A&#0032;whisper&#0032;app&#0032;that&#0032;bleeps&#0032;out&#0032;chosen&#0032;words&#0032;in&#0032;YouTube&#0032;videos | Product Hunt" style="width: 250px; height: 45px;" /></a>
 
 
 # bleep that sh*t
@@ -30,19 +31,18 @@ https://github.com/neonwatty/bleep_that_sht/assets/16326421/63ebd7a0-46f6-4efd-8
 To get setup to run the notebook / bleep your own videos / run the strealit demo first install the requirements for this project by pasting the below in your terminal.
 
 ```python
-pip install -r requirements.txt
+pip install -r requirements.streamlit
+```
+
+To install requirements for the gradio demo use this install
+
+```python
+pip install -r requirements.gradio
 ```
 
 You will need [ffmpeg](https://www.ffmpeg.org/download.html) installed on your machine as well.
 
 
-## Instructions for bleeping your own **local** videos
-
-Start this streamlit demo locally that lets you drag and drop local video files to bleep
-
-```python
-python -m streamlit run bleep_that_sht/app_video_upload.py
-```
 
 ## Instructions for bleeping **youtube** videos via youtube / shorts url
 
@@ -52,4 +52,20 @@ Start this streamlit demo locally that lets you enter in a youtube / shorts url 
 python -m streamlit run bleep_that_sht/app_url_download.py
 ```
 
+Alternatively you can start a gradio server with the same functionality
+
+```python
+python -m bleep_that_sht/gradio_app_url_download.py
+```
+
 This is the version hosted in the HF space [![HuggingFace Space](https://img.shields.io/badge/🤗-HuggingFace%20Space-cyan.svg)](https://huggingface.co/spaces/neonwatty/bleep_that_sht).
+
+
+
+## Instructions for bleeping your own **local** videos
+
+Start this streamlit demo locally that lets you drag and drop local video files to bleep
+
+```python
+python -m streamlit run bleep_that_sht/app_video_upload.py
+```

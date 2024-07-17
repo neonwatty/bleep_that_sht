@@ -1,5 +1,0 @@
-whisper-timestamped
-moviepy
-pydub
-git+https://github.com/neonwatty/pytube.git
-streamlit
