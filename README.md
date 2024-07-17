@@ -31,7 +31,13 @@ https://github.com/neonwatty/bleep_that_sht/assets/16326421/63ebd7a0-46f6-4efd-8
 To get setup to run the notebook / bleep your own videos / run the strealit demo first install the requirements for this project by pasting the below in your terminal.
 
 ```python
-pip install -r requirements.txt
+pip install -r requirements.streamlit
+```
+
+To install requirements for the gradio demo use this install
+
+```python
+pip install -r requirements.gradio
 ```
 
 You will need [ffmpeg](https://www.ffmpeg.org/download.html) installed on your machine as well.
