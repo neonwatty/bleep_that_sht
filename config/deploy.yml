@@ -12,7 +12,7 @@ proxy:
   healthcheck:
     interval: 3
     path: /
-    timeout: 10
+    timeout: 100
 
 registry:
   server: ghcr.io
