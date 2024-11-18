@@ -43,7 +43,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="🎬 Bleep That Sh*t 🙊") as dem
                     model_selection = gr.Dropdown(
                         choices=avaliable_models,
                         value="base",
-                        label="whisper model (base only in HF space)",
+                        label="whisper model (base only in demo)",
                         info="whisper model selection",
                         interactive=False,
                     )
